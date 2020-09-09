@@ -1,0 +1,51 @@
+CheckWorkStudent
+
+User 用户
+    id
+    phone
+    password
+    remark
+
+School 学校
+    id
+    name
+    user_id
+
+Dorm 宿舍
+    id
+    name
+    remark
+    school_id
+    user_id
+
+Student 学生
+    id
+    bed_name 床位名称
+    name
+    remark
+    school_id
+    dorm_id
+    user_id
+
+Shift 班次
+    id
+    name
+
+SignHistory 签到记录
+    id
+    school_id
+    dorm_id
+    student_id
+    shift_id
+    status
+    user_id
+    date
+
+SignDormRemark 签到宿舍备注
+    id
+    school_id
+    dorm_id
+    shift_id
+    user_id
+    body
+    date
