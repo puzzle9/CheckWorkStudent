@@ -54,7 +54,7 @@ class StudentController extends AdminController
     {
         return Form::make(new Student(), function (Form $form) {
             $form->display('id');
-            $form->select('school_id')->options(School::IdValue())->required();
+            $form->select('school_id')->options(School::IdValue())->value(1, true)->required();
             $form->select('dorm_id')->options(Dorm::IdValue())->required();
             $form->text('bed_name')->required();
             $form->text('name')->required();
