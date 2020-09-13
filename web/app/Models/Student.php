@@ -15,7 +15,7 @@ class Student extends Model
 
     public function Dorm()
     {
-        return $this->belongsTo(Dorm::class, 'school_id', 'id');
+        return $this->belongsTo(Dorm::class, 'dorm_id', 'id');
     }
 
     public static function IdValue()
