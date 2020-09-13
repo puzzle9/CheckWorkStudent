@@ -22,6 +22,9 @@ Student 学生
     id
     bed_name 床位名称
     name
+    phone
+    parent_type
+    parent_phone
     remark
     school_id
     dorm_id
@@ -30,6 +33,7 @@ Student 学生
 Shift 班次
     id
     name
+    user_id
 
 SignHistory 签到记录
     id

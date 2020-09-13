@@ -17,6 +17,7 @@ class CreateShiftsTable extends Migration
             $table->id();
             $table->string('name')->index();
             $table->unsignedBigInteger('sort')->nullable()->comment('排序')->index();
+            $table->unsignedBigInteger('user_id')->index();
             $table->timestamps();
             $table->softDeletes();
         });

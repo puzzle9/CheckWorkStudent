@@ -17,6 +17,9 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('bed_name')->index();
             $table->string('name')->index();
+            $table->string('phone')->nullable();
+            $table->string('parent_type')->nullable();
+            $table->string('parent_phone')->nullable();
             $table->string('remark')->nullable();
             $table->unsignedBigInteger('school_id')->index();
             $table->unsignedBigInteger('dorm_id')->index();
