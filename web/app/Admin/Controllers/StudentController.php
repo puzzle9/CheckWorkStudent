@@ -59,8 +59,8 @@ class StudentController extends AdminController
             $form->text('bed_name')->required();
             $form->text('name')->required();
             $form->mobile('phone')->options(['mask' => '999 9999 9999']);
-            $form->text('parent_type');
             $form->mobile('parent_phone')->options(['mask' => '999 9999 9999']);
+            $form->text('parent_type');
             $form->text('remark');
 
             $form->hidden('user_id')->value(1, true);
