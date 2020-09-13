@@ -23,7 +23,7 @@ class StudentController extends AdminController
     {
         return Grid::make(Student::with('School', 'Dorm'), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('School.name', '学校名称');
+            $grid->column('School.name', '学校名称')->hide();
             $grid->column('Dorm.name', '宿舍名称');
             $grid->column('bed_name');
             $grid->column('name');
@@ -32,7 +32,7 @@ class StudentController extends AdminController
             $grid->column('parent_phone');
             $grid->column('remark');
             $grid->column('sort')->sortable()->editable();
-            $grid->column('updated_at')->sortable();
+            $grid->column('updated_at')->sortable()->hide();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('School.name', '学校名称')->select(School::IdValue());        

@@ -22,7 +22,7 @@ class DormController extends AdminController
     {
         return Grid::make(Dorm::with(['School']), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('School.name', '学校名称');
+            $grid->column('School.name', '学校名称')->hide();
             $grid->column('name');
             $grid->column('remark');
             $grid->column('sort')->sortable()->editable();
