@@ -25,7 +25,7 @@ class DormController extends AdminController
             $grid->column('School.name', '学校名称');
             $grid->column('name');
             $grid->column('remark');
-            $grid->column('sort');
+            $grid->column('sort')->sortable()->editable();
             $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {

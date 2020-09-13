@@ -14,8 +14,17 @@
             <van-cell-group class="group">
               <template #title>{{ dorm.name }} {{ datas[dorm.id].remark }}</template>
               <van-cell size="large" v-for="(student, student_id) in datas[dorm.id].students" :key="student_id">
-                <template #title>{{ student.name }} {{ student.remark }}</template>
-                <template #label>{{ student.bed_name }}</template>
+                <template #title>
+                  <span>{{ student.name }} {{ student.remark }}</span>
+                  <a v-if="student.phone" class="phone" :href="`tel:${student.phone}`">{{ student.phone }}</a>
+                </template>
+                <template #label>
+                  <span>{{ student.bed_name }} 号床</span>
+                  <a v-if="student.parent_phone" class="phone" :href="`tel:${student.parent_phone}`">
+                    {{ student.parent_phone }}
+                    {{ student.parent_type }}
+                  </a>
+                </template>
                 <template #right-icon>
                   <van-switch v-model="student.status" :loading="student.loading" size="24" @change="studentChangeStatus(student)" />
                 </template>
@@ -42,7 +51,7 @@
 <script>
   import dayjs from 'dayjs'
   import fly from '../utils/fly'
-  const formatTime = time => dayjs(time).format('YYYY-MM-DD')
+  const formatTime = (time) => dayjs(time).format('YYYY-MM-DD')
 
   export default {
     name: 'Index',
@@ -61,8 +70,8 @@
       }
     },
     async mounted() {
-      await fly.get('/dorms').then(res => (this.dorms = res))
-      await fly.get('/shift').then(res => (this.shift = res))
+      await fly.get('/dorms').then((res) => (this.dorms = res))
+      await fly.get('/shift').then((res) => (this.shift = res))
 
       this.getData()
     },
@@ -74,7 +83,7 @@
             date: this.date,
             shift_id: this.shift_id,
           })
-          .then(res => {
+          .then((res) => {
             this.datas = res
             this.loading = false
             this.isRefresh = false
@@ -131,4 +140,9 @@
 
   .dorm
     padding-top: 30px
+
+  .phone
+    font-size: 12px
+    padding-left: 10px
+    color: rgb(150, 151, 153)
 </style>

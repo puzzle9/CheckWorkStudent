@@ -10,7 +10,7 @@ class Dorm extends Model
 
     public function Student()
     {
-        return $this->hasMany(Student::class, 'dorm_id')->select('id', 'dorm_id', 'bed_name', 'name', 'remark');
+        return $this->hasMany(Student::class, 'dorm_id');
     }
 
     public function School()

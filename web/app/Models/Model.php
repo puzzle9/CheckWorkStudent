@@ -25,7 +25,7 @@ class Model extends Info
     // 排序
     public function scopeSort($query, $name='sort', $type='desc')
     {
-        return $query->orderBy($name, $type)->latest();
+        return $query->orderBy($name, $type);
     }
 
     // 搜索

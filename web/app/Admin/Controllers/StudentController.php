@@ -31,7 +31,7 @@ class StudentController extends AdminController
             $grid->column('parent_type');
             $grid->column('parent_phone');
             $grid->column('remark');
-            $grid->column('sort');
+            $grid->column('sort')->sortable()->editable();
             $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
@@ -56,7 +56,7 @@ class StudentController extends AdminController
             $form->display('id');
             $form->select('school_id')->options(School::IdValue())->value(1, true)->required();
             $form->select('dorm_id')->options(Dorm::IdValue())->required();
-            $form->text('bed_name')->required();
+            $form->number('bed_name')->min(1)->max(8)->required();
             $form->text('name')->required();
             $form->mobile('phone')->options(['mask' => '999 9999 9999']);
             $form->mobile('parent_phone')->options(['mask' => '999 9999 9999']);
