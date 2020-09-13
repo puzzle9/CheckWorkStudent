@@ -53,10 +53,20 @@ class StudentController extends AdminController
     protected function form()
     {
         return Form::make(new Student(), function (Form $form) {
+            $bed_name = session('bed_name');
+            $dorm_id = session('dorm_id');
+
+            if (!$bed_name || $bed_name == 8) {
+                $bed_name = 1;
+                $dorm_id = 0;
+            } else {
+                $bed_name += 1;
+            }
+
             $form->display('id');
             $form->select('school_id')->options(School::IdValue())->value(1, true)->required();
-            $form->select('dorm_id')->options(Dorm::IdValue())->required();
-            $form->number('bed_name')->min(1)->max(8)->required();
+            $form->select('dorm_id')->default($dorm_id)->options(Dorm::IdValue())->required();
+            $form->number('bed_name')->default($bed_name)->min(1)->max(8)->required();
             $form->text('name')->required();
             $form->mobile('phone')->options(['mask' => '999 9999 9999']);
             $form->mobile('parent_phone')->options(['mask' => '999 9999 9999']);
@@ -65,6 +75,13 @@ class StudentController extends AdminController
 
             $form->hidden('user_id')->value(1, true);
             $form->number('sort')->rules('integer|min:1')->default(1)->min(1);
+
+            $form->submitted(function (Form $form) {
+                session([
+                    'dorm_id' => $form->input('dorm_id'),
+                    'bed_name' => $form->input('bed_name'),
+                ]);
+            });
         });
     }
 }
